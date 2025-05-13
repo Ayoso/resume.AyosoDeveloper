@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aziz Karatay | FullStack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.globe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.clouds.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+</head>
+<body>
+    <!-- Sound button -->
+    <button id="sound-toggle" aria-label="Toggle sound">
+        <i id="sound-icon" class="fas fa-volume-mute"></i>
+    </button>
+
+    <div class="navigation hidden">
+        <div class="nav-dot" data-section="intro" title="Intro"><span class="nav-tooltip">Intro</span></div>
+        <div class="nav-dot" data-section="home" title="About"><span class="nav-tooltip">About</span></div>
+        <div class="nav-dot" data-section="work" title="Work"><span class="nav-tooltip">Work</span></div>
+        <div class="nav-dot" data-section="stack" title="Stack"><span class="nav-tooltip">Stack</span></div>
+        <div class="nav-dot" data-section="contact" title="Contact"><span class="nav-tooltip">Contact</span></div>
+    </div>
+    
+    <!-- Audio equalizer visualization -->
+    <div class="audio-equalizer" id="audio-equalizer">
+        <div class="audio-bar"></div>
+        <div class="audio-bar"></div>
+        <div class="audio-bar"></div>
+        <div class="audio-bar"></div>
+        <div class="audio-bar"></div>
+    </div>
+    
+    <!-- Ambient pulse effect -->
+    <div class="ambient-pulse" id="ambient-pulse"></div>
+    
+    <!-- Audio elements -->
+    <audio id="click-sound" preload="auto" src="sounds/click.mp3"></audio>
+    <audio id="hover-sound" preload="auto" src="sounds/hover.wav"></audio>
+    <audio id="blink-sound" preload="auto" src="sounds/blink.wav"></audio>
+    <audio id="section-sound" preload="auto" src="sounds/section-change.wav"></audio>
+    <audio id="background-music" preload="auto" loop src="sounds/background-music.mp3"></audio>
+    
+    <div id="landing" class="section active">
+        <h1 style="animation: fadeIn 1.5s ease forwards, pulse 3s ease-in-out infinite;">Aziz</h1>
+        <h2 style="animation: fadeIn 1.5s ease 0.3s forwards; opacity: 0; transform: translateY(20px);">FullStack Developer</h2>
+        <button id="enter-btn" class="btn" style="animation: fadeIn 1.5s ease 0.6s forwards; opacity: 0; transform: translateY(20px);">
+            <i class="fas fa-arrow-right"></i> Enter
+        </button>
+    </div>
+
+    <div class="dark-overlay" id="overlay"></div>
+
+    <div id="eye-container">
+        <div id="fof">
+            <div></div>
+            <canvas></canvas>
+        </div>
+    </div>
+
+    <div id="intro" class="section hidden">
+        <h1><i class="fas fa-code-branch"></i> Aziz Karatay | Developer</h1>
+        <div class="bio">
+            <p><i class="fas fa-laptop-code"></i> Full-stack developer with a passion for creating elegant, efficient, and scalable solutions. With expertise spanning from frontend interfaces to backend systems and server infrastructure, I transform ideas into fully realized digital experiences.</p>
+            <p><i class="fas fa-lightbulb"></i> My approach combines technical expertise with problem-solving creativity, allowing me to tackle complex challenges with innovative solutions that not only meet but exceed expectations.</p>
+        </div>
+    </div>
+
+    <div id="home" class="section hidden">
+        <h2><i class="fas fa-user-circle"></i> About Me</h2>
+        <div class="content-grid">
+            <div class="grid-item">
+                <h3><i class="fas fa-code"></i> Web Development</h3>
+                <ul>
+                    <li>Frontend/Backend, SPAs, portals, integrations</li>
+                    <li>High-load optimization</li>
+                    <li>Responsive and fast UI</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fab fa-telegram-plane"></i> Telegram Bots</h3>
+                <ul>
+                    <li>Complex logic: payments, API, balance, subscriptions</li>
+                    <li>Crypto Bot, Telegram Wallet, FSM</li>
+                    <li>Bot infrastructure (server, storage, logic)</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-server"></i> DevOps & Server-side</h3>
+                <ul>
+                    <li>Docker, VPS, Nginx, Cloudflare</li>
+                    <li>Deploy automation, CI/CD</li>
+                    <li>Protection, backups, monitoring</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-tachometer-alt"></i> Optimization & Security</h3>
+                <ul>
+                    <li>Website acceleration, cache, CDN</li>
+                    <li>DDoS protection, HTTPS, encryption</li>
+                    <li>Performance audit</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="work" class="section hidden">
+        <h2><i class="fas fa-briefcase"></i> What I Work With</h2>
+        <div class="content-grid">
+            <div class="grid-item">
+                <h3><i class="fas fa-robot"></i> Process Automation</h3>
+                <ul>
+                    <li>API integrations, scripts</li>
+                    <li>Parsers, cron jobs, auto-responders</li>
+                    <li>Database work, data structures</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-cogs"></i> Full Service</h3>
+                <ul>
+                    <li>From concept to launch</li>
+                    <li>Maintenance and updates</li>
+                    <li>Performance optimization</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-puzzle-piece"></i> Custom Solutions</h3>
+                <ul>
+                    <li>Business-specific requirements</li>
+                    <li>Unique interfaces and interactions</li>
+                    <li>Specialized functionality</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-comments"></i> Consulting</h3>
+                <ul>
+                    <li>Technical architecture</li>
+                    <li>Performance improvements</li>
+                    <li>Security audits</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="stack" class="section hidden">
+        <h2><i class="fas fa-layer-group"></i> My Tech Stack</h2>
+        <div class="content-grid">
+            <div class="grid-item">
+                <h3><i class="fas fa-desktop"></i> Frontend</h3>
+                <ul>
+                    <li>HTML5 / CSS3 / JavaScript (ES6+)</li>
+                    <li>React / Next.js</li>
+                    <li>Tailwind CSS, Framer Motion</li>
+                    <li>Animations, WebGL, GSAP, Three.js</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-database"></i> Backend</h3>
+                <ul>
+                    <li>Python (FastAPI, aiogram, asyncio)</li>
+                    <li>Node.js (Express, Telegram API)</li>
+                    <li>PHP (Laravel, Slim)</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-table"></i> Databases</h3>
+                <ul>
+                    <li>PostgreSQL / MySQL / SQLite</li>
+                    <li>ORM: SQLAlchemy, Prisma, Eloquent</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-terminal"></i> DevOps</h3>
+                <ul>
+                    <li>Linux (Ubuntu), Bash</li>
+                    <li>Docker / Docker Compose</li>
+                    <li>Nginx / Apache</li>
+                    <li>Cloudflare, SSL, Firewall</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-plug"></i> API / Integrations</h3>
+                <ul>
+                    <li>REST API, Webhooks, OAuth</li>
+                    <li>Telegram Bot API, Crypto Bot</li>
+                    <li>Payment gateways: YooKassa, Binance, TON</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3><i class="fas fa-tools"></i> Other</h3>
+                <ul>
+                    <li>Git / GitHub / GitLab</li>
+                    <li>CI/CD (GitHub Actions, GitLab CI)</li>
+                    <li>Notion, Figma, Postman</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="language-toggle">
+        <div class="language-slider">
+            <div class="language-indicator"></div>
+            <button class="lang-option" data-lang="ru">RU</button>
+            <button class="lang-option" data-lang="en">EN</button>
+        </div>
+    </div>
+     
+    <div id="contact" class="section hidden">
+        <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+        <p>Looking for a developer who can bring your ideas to life? Let's talk about your project.</p>
+        <div class="contact">
+     
+            
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-dot" data-section="intro" title="Intro"><span class="nav-tooltip">Intro</span></div>
+        <div class="nav-dot" data-section="home" title="About"><span class="nav-tooltip">About</span></div>
+        <div class="nav-dot" data-section="work" title="Work"><span class="nav-tooltip">Work</span></div>
+        <div class="nav-dot" data-section="stack" title="Stack"><span class="nav-tooltip">Stack</span></div>
+        <div class="nav-dot" data-section="contact" title="Contact"><span class="nav-tooltip">Contact</span></div>
+    </div>
+
+
+    <div id="swipe-indicator" class="swipe-indicator">
+        <div class="swipe-icon">
+            <i class="fas fa-chevron-up"></i>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <span>Swipe to navigate</span>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
